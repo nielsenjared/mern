@@ -1,4 +1,5 @@
 # How to Scaffold a Boilerplate MERN Application and Deploy to Heroku
+https://stormy-beach-74916.herokuapp.com/
 
 ## Initialize Your Project with npm
 ```
