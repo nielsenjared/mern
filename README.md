@@ -3,8 +3,8 @@ https://stormy-beach-74916.herokuapp.com/
 
 ## Initialize Your Project with npm
 ```
-mkdir mern-redux-passport
-cd mern-redux-passport
+mkdir mern
+cd mern
 npm init
 ```
 During the init process you will be prompted to add a GitHub repository. Now would be a good time to make a new project on GitHub. Add the repo link to your package.json when prompted.
@@ -24,9 +24,11 @@ Add a server.js:
 ```
 const express = require('express');
 const app = express();
+
 app.get('/', (req, res) => {
   res.send("Hello World!");
 });
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT);
 ```
@@ -38,9 +40,9 @@ Do not wait until the last minute to deploy! Let’s deploy this now so we can t
 
 Update package.json:
 ```
-	"scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node server.js"
   },
 ```
 Then log into Heroku via the command line and create a new app:
