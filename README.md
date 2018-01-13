@@ -143,7 +143,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 ```
-To package.json, under scripts, add:
+To the package.json in the root directory of your app, add one more script:
 ```
 	"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
 ```
@@ -151,4 +151,4 @@ See also: https://devcenter.heroku.com/articles/nodejs-support#customizing-the-b
 
 Add, commit and push to Heroku. Verify that your app builds and is now live.
 
-Happy routing! 
+Happy routing!
