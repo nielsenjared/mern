@@ -64,9 +64,9 @@ Navigate to the URL provided to verify deployment.
 
 In the future:
 ```
-	git add .
-	git commit -m “Ch-ch-ch-changes…”
-	git push heroku master
+git add .
+git commit -m “Ch-ch-ch-changes…”
+git push heroku master
 ```
 
 ## MongoDB
@@ -94,6 +94,10 @@ Add `models` and `routes` directories to your app:
 
 `mkdir models routes`
 
+To these add placeholder `index.js` files:
+
+`touch models/index.js routes/index.js`
+
 TODO: Basic API route && Schema demos, but for the time being RTFM: https://github.com/Automattic/mongoose#overview
 
 ## React
@@ -102,7 +106,7 @@ Install Create React App if you don't already have it:
 
 `npm install -g create-react-app`
 
-From within your app directory, run
+From within your the root directory of your app, run
 
 `create-react-app client`
 
@@ -127,15 +131,15 @@ To the package.json in your client directory, just below "private", add:
 From here you will start your app from its root directory with:
 `npm run dev`
 
-This will start both servers concurrently. Try it!
+This will start both servers _concurrently_. Try it!
 
 ## Heroku, Again
 
-Add path:
+Add the path package:
 
 `npm install --save path`
 
-To server.js, replace the 'Hello World!' get route with the following:
+In server.js, replace the 'Hello World!' get route with the following:
 ```
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -149,7 +153,7 @@ All requests will be met with the index.html file as a response. From there, you
 
 To the package.json in the root directory of your app, add one more script:
 ```
-	"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
 ```
 See also: https://devcenter.heroku.com/articles/nodejs-support#customizing-the-build-process
 
