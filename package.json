@@ -1,0 +1,30 @@
+{
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "Boilerplate MongoDB Express React Node app.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nielsenjared/mern.git"
+  },
+  "keywords": [
+    "mern",
+    "mongodb",
+    "react",
+    "express",
+    "node"
+  ],
+  "author": "Jared Nielsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nielsenjared/mern/issues"
+  },
+  "homepage": "https://github.com/nielsenjared/mern#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
