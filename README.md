@@ -1,4 +1,4 @@
-# How to Create a Boilerplate MERN app
+# How to Scaffold a Boilerplate MERN Application and Deploy to Heroku
 
 ## Initialize Your Project with npm
 ```
@@ -11,8 +11,7 @@ During the init process you will be prompted to add a GitHub repository. Now wou
 ## Initialize Your Project with Git
 ```
 git init
-git remote add origin https://github.com/nielsenjared/mern.git
-atom .gitignore
+git remote add origin <URL-to-your-repo>
 ```
 Add `node_modules` to your `.gitignore`.
 
@@ -133,7 +132,7 @@ Add path:
 
 `npm install --save path`
 
-To server.js, just above PORT and listen(), add:
+To server.js, replace the 'Hello World!' get route with the following:
 ```
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -143,6 +142,8 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 ```
+All requests will be met with the index.html file as a response. From there, you will use ReactRouter.
+
 To the package.json in the root directory of your app, add one more script:
 ```
 	"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
