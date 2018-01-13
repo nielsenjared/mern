@@ -16,7 +16,7 @@ atom .gitignore
 ```
 Add `node_modules` to your `.gitignore`.
 
-## Set Up a Simple Server
+## Set Up a Simple Express Server
 ```
 npm install express --save
 ```
@@ -58,7 +58,7 @@ git commit -m “First”
 git push -u origin master
 git push heroku master
 ```
-Navigate to the URL provided to verify deployment. 
+Navigate to the URL provided to verify deployment.
 
 In the future:
 ```
@@ -66,3 +66,89 @@ In the future:
 	git commit -m “Ch-ch-ch-changes…”
 	git push heroku master
 ```
+
+## MongoDB
+
+Log into Heroku.com and find your app. Under Resources, search for mLab in the Add-ons input field and add it as a Provision. If there are no results, you need to add a credit card to your account. Don't worry, it's free.
+
+Just for fun, under Settings, reveal your app config variables. There it is, our MongoDB environment variable, `MONGODB_URI`. You will see how that is used below.
+
+Install Mongoose:
+`npm install --save mongoose`
+
+Add to server.js:
+```
+const mongoose = require('mongoose');
+
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/mern",
+  {
+    useMongoClient: true
+  }
+);
+
+```
+Add `models` and `routes` directories to your app:
+
+`mkdir models routes`
+
+TODO: Basic API route && Schema demos, but for the time being RTFM: https://github.com/Automattic/mongoose#overview
+
+## React
+
+Install Create React App if you don't already have it:
+
+`npm install -g create-react-app`
+
+From within your app directory, run
+
+`create-react-app client`
+
+Now let's connect the front to the back using concurrently and a proxy:
+
+`npm install --save concurrently`
+
+To the package.json in the root directory of your app, add two new scripts:
+```
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\""
+  },
+```
+
+To the package.json in your client directory, just below "private", add:
+
+`"proxy": "http://localhost:3001/",`
+
+From here you will start your app from its root directory with:
+`npm run dev`
+
+This will start both servers concurrently. Try it!
+
+## Heroku, Again
+
+Add path:
+
+`npm install --save path`
+
+To server.js, just above PORT and listen(), add:
+```
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+```
+To package.json, under scripts, add:
+```
+	"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+```
+See also: https://devcenter.heroku.com/articles/nodejs-support#customizing-the-build-process
+
+Add, commit and push to Heroku. Verify that your app builds and is now live.
+
+Happy routing! 

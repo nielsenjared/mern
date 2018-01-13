@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -25,6 +28,8 @@
   },
   "homepage": "https://github.com/nielsenjared/mern#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "concurrently": "^3.5.1",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.9"
   }
 }
