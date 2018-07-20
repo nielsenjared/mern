@@ -118,7 +118,7 @@ To the package.json in the root directory of your app, add two new scripts:
 ```
 "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run start\" \"npm run client\""
   },
