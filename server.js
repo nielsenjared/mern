@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mern");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mern", {
+  useMongoClient: true,
+});
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
